@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rental Market Analysis — 3855 Yothers Road, Apopka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#008C82;
+    --teal-deep:#04645d;
+    --gold:#D4AF50;
+    --charcoal:#1A1A1A;
+    --ivory:#FBF9F4;
+    --paper:#FFFFFF;
+    --line:#E7E1D3;
+    --muted:#6F6A60;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--charcoal);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- Eyebrow / structural ---------- */
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    font-weight:500;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    font-size:.7rem;
+    color:var(--teal);
+  }
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.12;margin:0;}
+  h2{font-size:2.15rem;margin-bottom:.2em;}
+  h3{font-size:1.5rem;margin-bottom:.35em;}
+  p{margin:.5em 0 1em;}
+  .rule{height:1px;background:var(--line);border:0;margin:0;}
+  .gold-tick{display:inline-block;width:46px;height:3px;background:var(--gold);margin:14px 0 22px;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:linear-gradient(160deg,var(--teal) 0%,var(--teal-deep) 100%);
+    color:#fff;
+    padding:64px 0 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero:after{
+    content:"";position:absolute;right:-80px;top:-80px;width:280px;height:280px;
+    border:2px solid rgba(212,175,80,.35);border-radius:50%;
+  }
+  .hero .eyebrow{color:var(--gold);}
+  .hero h1{font-size:3rem;color:#fff;margin:.1em 0 .15em;}
+  .hero .addr{font-family:'Jost';font-weight:300;font-size:1.05rem;letter-spacing:.04em;color:rgba(255,255,255,.92);}
+  .hero .meta{margin-top:26px;font-size:.82rem;letter-spacing:.06em;color:rgba(255,255,255,.78);}
+  .hero .meta strong{font-weight:500;color:#fff;}
+  .signature{font-family:'Cormorant Garamond';font-style:italic;font-size:1.15rem;color:var(--gold);margin-top:8px;}
+
+  /* ---------- Sections ---------- */
+  section{padding:46px 0;}
+  section .rule + .body{margin-top:26px;}
+
+  /* ---------- Stat strip ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  .stat{background:var(--paper);padding:20px 16px;text-align:center;}
+  .stat .n{font-family:'Cormorant Garamond';font-weight:700;font-size:2rem;color:var(--teal);line-height:1;}
+  .stat .l{font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+
+  /* ---------- At a glance ---------- */
+  .glance{display:grid;grid-template-columns:1fr 1fr;gap:0 38px;}
+  .glance .row{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:11px 0;font-size:.92rem;}
+  .glance .row .k{color:var(--muted);letter-spacing:.03em;}
+  .glance .row .v{font-weight:400;text-align:right;}
+
+  /* ---------- Callout ---------- */
+  .callout{
+    background:var(--paper);
+    border-left:3px solid var(--gold);
+    padding:24px 28px;
+    border-radius:0 6px 6px 0;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .callout h3{color:var(--teal-deep);}
+
+  /* ---------- Area cards ---------- */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:22px 24px;}
+  .card .ico{font-family:'Cormorant Garamond';font-weight:700;color:var(--gold);font-size:1.1rem;letter-spacing:.04em;}
+  .card h3{font-size:1.22rem;margin:.25em 0 .3em;}
+  .card p{font-size:.9rem;margin:0;color:#2b2b2b;}
+
+  /* ---------- Tables ---------- */
+  .tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;font-size:.82rem;min-width:560px;}
+  caption{caption-side:top;text-align:left;font-family:'Jost';font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:.7rem;color:var(--teal);padding-bottom:10px;}
+  th,td{padding:10px 10px;text-align:left;border-bottom:1px solid var(--line);}
+  thead th{font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-size:.66rem;}
+  tbody tr:hover{background:#fff;}
+  td.num,th.num{text-align:right;white-space:nowrap;}
+  tr.subject{background:rgba(0,140,130,.07);}
+  tr.subject td{font-weight:500;color:var(--teal-deep);border-bottom:2px solid var(--teal);}
+  .footnote{font-size:.78rem;color:var(--muted);margin-top:12px;}
+
+  /* ---------- Pricing tiers ---------- */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .tier{border:1px solid var(--line);border-radius:8px;background:var(--paper);padding:24px 20px;text-align:center;position:relative;}
+  .tier.rec{border:1.5px solid var(--teal);box-shadow:0 8px 28px -16px rgba(0,140,130,.5);}
+  .tier .tag{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+  .tier.rec .tag{color:var(--teal);font-weight:600;}
+  .tier .price{font-family:'Cormorant Garamond';font-weight:700;font-size:2.5rem;color:var(--charcoal);line-height:1;margin:8px 0 4px;}
+  .tier.rec .price{color:var(--teal);}
+  .tier .sub{font-size:.78rem;color:var(--muted);}
+  .ribbon{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:#3a2f08;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:4px 12px;border-radius:20px;}
+
+  /* ---------- Strategy list ---------- */
+  ol.strategy{list-style:none;counter-reset:s;padding:0;margin:0;}
+  ol.strategy li{counter-increment:s;position:relative;padding:0 0 18px 52px;}
+  ol.strategy li:before{
+    content:counter(s,decimal-leading-zero);
+    position:absolute;left:0;top:-2px;
+    font-family:'Cormorant Garamond';font-weight:700;font-size:1.4rem;color:var(--gold);
+  }
+  ol.strategy li strong{font-weight:500;color:var(--teal-deep);}
+
+  /* ---------- CTA ---------- */
+  .cta{background:var(--charcoal);color:#fff;border-radius:10px;padding:42px 40px;text-align:center;}
+  .cta .eyebrow{color:var(--gold);}
+  .cta h2{color:#fff;}
+  .cta p{color:rgba(255,255,255,.8);max-width:520px;margin:.6em auto 0;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:40px 0 60px;}
+  .disclaimer{font-size:.72rem;color:var(--muted);line-height:1.6;border-top:1px solid var(--line);padding-top:22px;}
+  .brandline{font-family:'Cormorant Garamond';font-style:italic;color:var(--teal);font-size:1.1rem;margin-bottom:6px;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:680px){
+    .hero h1{font-size:2.2rem;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .glance{grid-template-columns:1fr;}
+    .cards{grid-template-columns:1fr;}
+    .tiers{grid-template-columns:1fr;}
+    h2{font-size:1.8rem;}
+  }
+  @media print{
+    body{background:#fff;}
+    .hero{background:var(--teal)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .tier.rec,.cta,.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    section{padding:26px 0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Verandah Properties &nbsp;·&nbsp; Rental Market Analysis</div>
+    <h1>3855 Yothers Road</h1>
+    <div class="addr">Apopka, Florida 32712 &nbsp;·&nbsp; Northwest Orange County</div>
+    <div class="signature">The marriage, not the sprint.</div>
+    <div class="meta">
+      Prepared for <strong>Harold &amp; Amanda Cater</strong> &nbsp;|&nbsp; By <strong>Pamela Syvertson, Owner &amp; Broker</strong> &nbsp;|&nbsp; June 22, 2026
+    </div>
+  </div>
+</header>
+
+<!-- INTRO + STATS -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The Headline</div>
+    <span class="gold-tick"></span>
+    <p style="font-size:1.05rem;max-width:680px;">
+      Your property is a newer, well-sized single-family rental in one of Central Florida's
+      fastest-rising corridors. Comparable homes in this market are leasing at near-full asking
+      price in roughly four weeks. Priced correctly, 3855 Yothers Road can secure an excellent,
+      long-term tenant in <strong>under 21 days</strong> — and this analysis shows exactly where to set it.
+    </p>
+    <div class="stats" style="margin-top:30px;">
+      <div class="stat"><div class="n">$2,395</div><div class="l">Recommended Rent</div></div>
+      <div class="stat"><div class="n">&lt;21</div><div class="l">Target Days to Lease</div></div>
+      <div class="stat"><div class="n">99.4%</div><div class="l">Avg. Leased-to-Ask</div></div>
+      <div class="stat"><div class="n">13</div><div class="l">Comparables Reviewed</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPERTY AT A GLANCE -->
+<section style="background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="eyebrow">The Property</div>
+    <h2>At a glance</h2>
+    <span class="gold-tick"></span>
+    <div class="glance">
+      <div>
+        <div class="row"><span class="k">Configuration</span><span class="v">3 Bedrooms + Office / Flex</span></div>
+        <div class="row"><span class="k">Bathrooms</span><span class="v">2 Full</span></div>
+        <div class="row"><span class="k">Living Area</span><span class="v">2,039 sq ft</span></div>
+        <div class="row"><span class="k">Year Built</span><span class="v">2007</span></div>
+        <div class="row"><span class="k">Garage</span><span class="v">2-Car Attached</span></div>
+      </div>
+      <div>
+        <div class="row"><span class="k">Lot Size</span><span class="v">0.27 Acre (11,638 sq ft)</span></div>
+        <div class="row"><span class="k">HOA</span><span class="v">None</span></div>
+        <div class="row"><span class="k">Construction</span><span class="v">Block &amp; Stucco · Slab</span></div>
+        <div class="row"><span class="k">Flood Zone</span><span class="v">X (Lowest Risk)</span></div>
+        <div class="row"><span class="k">Condition</span><span class="v">Vacant · Show-Ready</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE 3BR + OFFICE POSITIONING -->
+<section>
+  <div class="wrap">
+    <div class="callout">
+      <div class="eyebrow">An Honest, Strategic Note on Layout</div>
+      <h3>A true 3-bedroom that lives like a four</h3>
+      <p style="margin-bottom:0;">
+        The public record counts four bedrooms; in practice this is a <strong>three-bedroom with a
+        dedicated office</strong> — the fourth room functions as a flex space rather than a true bedroom.
+        We market it precisely as what it is, because misrepresenting a layout is the fastest way to lose
+        a qualified tenant at the showing. The advantage: that flex room is a genuine selling point.
+        For the renter who needs a home office, a nursery, a gym, or a guest study, this property delivers
+        a four-room footprint with the honesty of a three-bedroom listing — which lets us hold pricing
+        near the larger comps rather than dropping to the bottom of the three-bedroom range.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S SPECIAL ABOUT THE AREA -->
+<section style="background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="eyebrow">Location</div>
+    <h2>What makes this corner of Apopka special</h2>
+    <span class="gold-tick"></span>
+    <p style="max-width:680px;">
+      This is not a typical Apopka address. Yothers Road sits in the northwest Wekiva pocket of Orange
+      County — a place defined less by subdivisions than by spring-fed rivers, state forest, and a
+      brand-new gateway to the rest of Orlando. While many of the comparable homes sit inside named
+      communities nearby, your property's appeal is its setting and its access.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <div class="ico">—— I</div>
+        <h3>On-ramp to the whole region</h3>
+        <p>The Wekiva Parkway (SR 429) was completed in 2024, closing the final gap in Orlando's
+        beltway. Its Kelly Park Road interchange — with the parkway crossing Yothers Road itself —
+        puts the property minutes from a toll-road connection to the airport, the attractions corridor,
+        and downtown employment. This single change has transformed northwest Apopka's commute.</p>
+      </div>
+      <div class="card">
+        <div class="ico">—— II</div>
+        <h3>Springs and forest at the doorstep</h3>
+        <p>Kelly Park at Rock Springs — a 68°F natural spring with a famous tubing run — is just up the
+        road, alongside Wekiwa Springs State Park and the federally designated Wild &amp; Scenic Wekiva
+        River. Miles of hiking, paddling, and biking trails make this one of the most genuinely scenic
+        residential pockets in metro Orlando.</p>
+      </div>
+      <div class="card">
+        <div class="ico">—— III</div>
+        <h3>Growth arriving now</h3>
+        <p>Development is following the new road. Wekiva Ranch — 368 residences plus more than 33,000
+        sq ft of shops and dining on Kelly Park Road — is underway, with retail expected to begin
+        opening in 2026. Rising amenities and rooftops lift rental demand across the immediate area.</p>
+      </div>
+      <div class="card">
+        <div class="ico">—— IV</div>
+        <h3>Freedom of no HOA</h3>
+        <p>With no homeowners association and a quarter-acre lot, the property offers space, parking,
+        and flexibility that community-restricted rentals can't — including a wider, pet-friendly tenant
+        pool. Assigned schools are Zellwood Elementary, Wolf Lake Middle, and Apopka High.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MARKET -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The Evidence</div>
+    <h2>What the market is doing</h2>
+    <span class="gold-tick"></span>
+    <p style="max-width:680px;">
+      Thirteen comparable single-family rentals in the surrounding Apopka / Wekiva submarkets tell a
+      consistent story: well-presented homes lease at <strong>near-full asking price</strong> — averaging
+      99.4% of list — in an average of <strong>27 days</strong>. The fastest leases went to homes priced
+      sharply from day one. The slowest sat because they were positioned above the market, not below it.
+    </p>
+
+    <div class="tbl-scroll">
+      <table>
+        <caption>Recently Leased — Comparable Homes</caption>
+        <thead>
+          <tr>
+            <th>Address</th><th>Community</th><th>Beds</th><th class="num">Sq Ft</th>
+            <th class="num">Built</th><th class="num">Leased</th><th class="num">Days</th><th class="num">% of Ask</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>4322 Rock Hill Loop</td><td>Rock Springs Ridge</td><td>4 / 2</td><td class="num">2,040</td><td class="num">2005</td><td class="num">$2,465</td><td class="num">14</td><td class="num">100%</td></tr>
+          <tr><td>1605 Shadowood Ct</td><td>Stoneywood</td><td>2 / 2</td><td class="num">1,957</td><td class="num">2003</td><td class="num">$2,500</td><td class="num">5</td><td class="num">100%</td></tr>
+          <tr><td>762 Welch Hill Cir</td><td>Wekiva Spgs Reserve</td><td>4 / 2</td><td class="num">1,868</td><td class="num">2003</td><td class="num">$2,365</td><td class="num">16</td><td class="num">100%</td></tr>
+          <tr><td>1971 Parkglen Cir</td><td>Parkview Wekiva</td><td>3 / 2</td><td class="num">2,123</td><td class="num">2002</td><td class="num">$2,300</td><td class="num">20</td><td class="num">95.8%</td></tr>
+          <tr><td>4505 Rock Hill Loop</td><td>Rock Springs Ridge</td><td>3 / 2</td><td class="num">2,138</td><td class="num">2004</td><td class="num">$2,700</td><td class="num">27</td><td class="num">100%</td></tr>
+          <tr><td>936 Welch Hill Cir</td><td>Wekiva Spgs Reserve</td><td>4 / 2</td><td class="num">1,884</td><td class="num">2000</td><td class="num">$2,340</td><td class="num">30</td><td class="num">100%</td></tr>
+          <tr><td>1356 Honey Rd</td><td>Spring Harbor</td><td>4 / 2</td><td class="num">1,884</td><td class="num">2000</td><td class="num">$2,380</td><td class="num">34</td><td class="num">100%</td></tr>
+          <tr><td>336 Pleasant Gardens Dr</td><td>Pleasant Gardens</td><td>4 / 2.5</td><td class="num">2,081</td><td class="num">2002</td><td class="num">$2,585</td><td class="num">40</td><td class="num">98.9%</td></tr>
+          <tr><td>4723 Coppola Dr</td><td>Stoneybrook Hills</td><td>4 / 2</td><td class="num">1,942</td><td class="num">2012</td><td class="num">$2,310</td><td class="num">66</td><td class="num">100%</td></tr>
+          <tr class="subject"><td>3855 Yothers Rd</td><td>— (no HOA)</td><td>3 + office</td><td class="num">2,039</td><td class="num">2007</td><td class="num">$2,395*</td><td class="num">&lt;21*</td><td class="num">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="footnote">*Subject property — recommended positioning. Leased set: 9 homes · average rent $2,438 · median $2,380 · average 28 days on market · 99.4% of asking.</p>
+
+    <div class="tbl-scroll" style="margin-top:34px;">
+      <table>
+        <caption>Currently Active — Your Competition Today</caption>
+        <thead>
+          <tr>
+            <th>Address</th><th>Community</th><th>Beds</th><th class="num">Sq Ft</th>
+            <th class="num">Built</th><th class="num">Asking</th><th class="num">Days Listed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1024 Old Magnolia Cove Dr</td><td>Errol Estate</td><td>3 / 2</td><td class="num">1,915</td><td class="num">1981</td><td class="num">$2,200</td><td class="num">4</td></tr>
+          <tr><td>1113 Benan Ct</td><td>Dominish Estates</td><td>3 / 2.5</td><td class="num">1,922</td><td class="num">2003</td><td class="num">$2,415</td><td class="num">11</td></tr>
+          <tr><td>1317 Welch Ridge Ter</td><td>Andersen Terrace</td><td>4 / 2</td><td class="num">1,884</td><td class="num">2004</td><td class="num">$2,490</td><td class="num">25</td></tr>
+          <tr><td>4505 Rock Hill Loop</td><td>Rock Springs Ridge</td><td>3 / 2</td><td class="num">2,138</td><td class="num">2004</td><td class="num">$2,700</td><td class="num">23</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="footnote">Active set: 4 homes · average asking $2,451 · median $2,453. Note the spread: the $2,200 listing is an older 1981 build; the $2,700 listing is larger and in a sought-after community.</p>
+  </div>
+</section>
+
+<!-- PRICING RECOMMENDATION -->
+<section style="background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="eyebrow">The Recommendation</div>
+    <h2>Where to set the rent</h2>
+    <span class="gold-tick"></span>
+    <p style="max-width:680px;">
+      Your property's nearest twin in the data — 4322 Rock Hill Loop, virtually identical in size and
+      age — leased in 14 days at $2,465 as a four-bedroom inside an amenitized community. The closest
+      three-bedroom needed a price cut to move. Your home sits between them: newer than nearly every
+      comparable, well-sized, with a true bedroom count of three plus that valuable office. The pricing
+      below is built to make 3855 Yothers the obvious value — and lease it fast.
+    </p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tag">Fastest Lease</div>
+        <div class="price">$2,350</div>
+        <div class="sub">Likely under 14 days. Leaves modest value on the table.</div>
+      </div>
+      <div class="tier rec">
+        <div class="ribbon">Recommended</div>
+        <div class="tag">Target &lt; 21 Days</div>
+        <div class="price">$2,395</div>
+        <div class="sub">At the leased average, just under $2,400. The right balance of speed and return.</div>
+      </div>
+      <div class="tier">
+        <div class="tag">Ceiling</div>
+        <div class="price">$2,450</div>
+        <div class="sub">Achievable if condition shows exceptionally; may extend toward 30 days.</div>
+      </div>
+    </div>
+    <p class="footnote" style="margin-top:20px;">
+      At $2,395, the rent works out to roughly $1.17 per square foot — squarely mid-market for the
+      leased comparables, and beneath the per-foot figures of the homes that leased in under three weeks.
+      That is the lane where speed and price meet.
+    </p>
+  </div>
+</section>
+
+<!-- STRATEGY TO LEASE FAST -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Execution</div>
+    <h2>How we lease it in under 21 days</h2>
+    <span class="gold-tick"></span>
+    <ol class="strategy" style="max-width:720px;margin-top:6px;">
+      <li><strong>Price as the value, from day one.</strong> The data is unambiguous: homes that priced
+      sharply at launch leased fastest at full ask. We do not test a high number and chase it down —
+      that is how listings go stale.</li>
+      <li><strong>Market the flex room as a feature, honestly.</strong> We lead with "3 bedrooms plus a
+      dedicated office / nursery / flex," attracting the work-from-home and growing-family tenants for
+      whom that fourth room is the deciding factor — without any showing-day surprises.</li>
+      <li><strong>Professional photography before it goes live.</strong> The property already shows well,
+      vacant and freshly presented. Strong photography on a sharply priced, newer home is what generates
+      the first-week inquiry volume that produces a fast, qualified lease.</li>
+      <li><strong>Lean on the location story.</strong> Beltway access, the springs and state park, and a
+      no-HOA lot are real differentiators against community-restricted competitors — and a pet-friendly
+      policy widens the qualified applicant pool further.</li>
+      <li><strong>Screen for the right tenant, not the first one.</strong> A highly qualified tenant can
+      rent anywhere in their price range; our job is to make this the property they choose — and to place
+      one who protects your investment for the long term.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="wrap">
+    <div class="cta">
+      <div class="eyebrow">Next Steps</div>
+      <h2>Let's get it to market</h2>
+      <p>If this pricing and approach align with what you're hoping for, the next step is a quick walk
+      of the property to confirm it's show-ready, followed by professional photos and launch. From there,
+      a well-priced home like this should move quickly.</p>
+      <p style="margin-top:18px;"><strong style="color:var(--gold);">Pamela Syvertson</strong> · Owner &amp; Broker · Verandah Properties</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="disclaimer">
+      <div class="brandline">Curating Central Florida's Finest Rental Portfolio</div>
+      This analysis is an opinion of value prepared by Pamela Syvertson, Owner &amp; Broker, Verandah
+      Properties, and is not an appraisal. Pricing recommendations are based on a comparative review of
+      active and recently leased single-family rentals in the surrounding Apopka and Wekiva submarkets as
+      of June 22, 2026, drawn from Stellar MLS data believed reliable but not guaranteed. Market
+      conditions, property condition, and seasonality affect final achievable rent and time to lease.
+      Comparable data © 2026 CoreLogic / Stellar MLS.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
